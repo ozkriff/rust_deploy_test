@@ -1,0 +1,6 @@
+[package]
+name = "deployme"
+version = "0.1.0"
+authors = ["Andrey Lesnikov <ozkriff@gmail.com>"]
+
+[dependencies]
