@@ -1,0 +1,26 @@
+language: rust
+
+cache: cargo
+
+rust:
+    - stable
+
+os:
+    - linux
+
+sudo: false
+
+script:
+    - cargo run
+
+before_deploy:
+    - mv target/release/deployme .
+    - tar -zcvf zoc_$(date +%Y-%m-%d)-$TRAVIS_RUST_VERSION-$TRAVIS_OS_NAME.tar.gz deployme
+
+deploy:
+    provider: releases
+    skip_cleanup: true
+    overwrite: true
+    file: zoc_$(date +%Y-%m-%d)-$TRAVIS_RUST_VERSION-$TRAVIS_OS_NAME.tar.gz
+    # on:
+    #     tags: true
