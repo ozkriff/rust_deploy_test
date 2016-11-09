@@ -14,7 +14,7 @@ script:
     - cargo run
 
 before_deploy:
-    - mv target/release/deployme .
+    - mv target/debug/deployme .
     - tar -zcvf zoc_$(date +%Y-%m-%d)-$TRAVIS_RUST_VERSION-$TRAVIS_OS_NAME.tar.gz deployme
 
 deploy:
