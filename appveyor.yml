@@ -3,16 +3,16 @@ environment:
         PROJECT_NAME: zoc
     matrix:
         - TARGET: i686-pc-windows-gnu
-        - CHANNEL: stable
+          CHANNEL: stable
 
         - TARGET: i686-pc-windows-msvc
-        - CHANNEL: stable
+          CHANNEL: stable
 
         - TARGET: i686-pc-windows-gnu
-        - CHANNEL: nightly
+          CHANNEL: nightly
 
         - TARGET: i686-pc-windows-msvc
-        - CHANNEL: nightly
+          CHANNEL: nightly
 
         # TODO: 64
 
