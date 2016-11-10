@@ -31,7 +31,6 @@ test_script:
 
 cache:
     - target
-    # - C:\Users\appveyor\.cargo\registry
 
 before_deploy:
     - mkdir staging
