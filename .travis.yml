@@ -22,5 +22,7 @@ deploy:
     skip_cleanup: true
     overwrite: true
     file: zoc_$(date +%Y-%m-%d)-$TRAVIS_RUST_VERSION-$TRAVIS_OS_NAME.tar.gz
+    on:
+        tags: true
     api_key:
         secure: GUYDAnOsRFzXrXEAwfkhg7rmOKmnd1J6U2Eag2uklFfOC90K04DNAlVMTba82y2V7GSqRvJpKmjzMt8gsOIVGhVd6vKJk/ZRAThFddqy/RV4zFvX5SLrmX1UOasTC4O6qOfz63fIsruVnr2hU1WW0a5ASlTBXhCdiySsz1V1rujCZTrbifD8r2H+80HhZ8+H7YoWSU1KHGrOjCFtFWcgOXgdMpq5lzadYEU5v5FZG9uXasPlipvInjxOziXK4iRa3QYI08cbh75DegLTZUbqvQEKsKxQ4bbYv3eQt9csRQBlkj9RQfHU2zKPe4MGzph2OyHut7TlR2IkclSiTjvrGNA6Vbsp1SkXutlSCTK8D00UNGde4QPZ+RgMGxPsRhwxVB4TKSExPi03cxpU4ySc6smQfYXb2H3g14QpxrX9MNKPH0LnEFV8VuHCFSACPOn3xjudKBP/bsWXJ6VW8ZyU29HrWVHdhl76RrnWx/OpWIIvxaEGP/M/Q6/5yIEGdBv+y8wm7jp6NJ/1ewEJGiJjWSKJHZ5lrUh8u3bVpb4aj2hQ2lTJM24EyhL6Q6EdB1Na0X3eVMjTteomvJj2+pUq0zATlQt/8xTbdZrRgd12S3n2VQ0NR52GwNtZYSiTNiVScwUloZx8a5ylhKKEAYdZ5Xva6cqSM+WBNOWdQtAwoM8=
