@@ -1,0 +1,52 @@
+environment:
+    global:
+        PROJECT_NAME: zoc
+        MAKE: C:\MinGW\bin\mingw32-make.exe
+    matrix:
+        - TARGET:
+            - i686-pc-windows-gnu
+            - i686-pc-windows-msvc
+        - CHANNEL:
+            - stable
+            - nightly
+        - BITS:
+            - 32
+            - 64
+
+install:
+    - set PATH=C:\msys64\mingw%BITS%\bin;C:\msys64\usr\bin;%PATH%
+    - curl -sSf -o rustup-init.exe https://win.rustup.rs
+    - rustup-init.exe --default-host %TARGET% --default-toolchain %CHANNEL% -y
+    - set PATH=%PATH%;C:\Users\appveyor\.cargo\bin
+
+build_script:
+    - rustc -Vv
+    - cargo -V
+
+test_script:
+    - cmd: '%MAKE% && %MAKE% test'
+
+cache:
+    - target
+    - C:\Users\appveyor\.cargo\registry
+
+before_deploy:
+    - mkdir staging
+    - copy target\debug\deployme.exe staging
+    - cd staging
+    - 7z a ../%PROJECT_NAME%-%TARGET%.zip *
+    - appveyor PushArtifact ../%PROJECT_NAME%-%TARGET%.zip
+
+deploy:
+    artifact: /.*\.zip/
+    auth_token:
+        secure: MjXUk1z5Nb+uSillUwdmW9rVT2JfwIO0aB8Reb2qZYCCs7J/cAFJP4oCNE8XbiqE
+    provider: GitHub
+    on:
+        CHANNEL: stable
+        appveyor_repo_tag: true
+
+# # эм, а на других ветках сборка вообще будет? мне ж надо что бы это только о деплое было
+# branches:
+#     only:
+#         - master
