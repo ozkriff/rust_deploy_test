@@ -1,7 +1,6 @@
 environment:
     global:
         PROJECT_NAME: zoc
-        MAKE: C:\MinGW\bin\mingw32-make.exe
     matrix:
         - TARGET: i686-pc-windows-gnu
         - CHANNEL: stable
@@ -28,7 +27,7 @@ build_script:
     - cargo -V
 
 test_script:
-    - cmd: '%MAKE% && %MAKE% test'
+    - cmd: cargo run
 
 cache:
     - target
