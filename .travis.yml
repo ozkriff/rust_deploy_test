@@ -1,5 +1,8 @@
 language: rust
 
+env:
+    - zipname=zoc_$(date +%Y-%m-%d)-$TRAVIS_RUST_VERSION-$TRAVIS_OS_NAME.tar.gz
+
 cache: cargo
 
 rust:
@@ -15,13 +18,13 @@ script:
 
 before_deploy:
     - mv target/debug/deployme .
-    - tar -zcvf zoc_$(date +%Y-%m-%d)-$TRAVIS_RUST_VERSION-$TRAVIS_OS_NAME.tar.gz deployme
+    - tar -zcvf $zipname deployme
 
 deploy:
     provider: releases
     skip_cleanup: true
     overwrite: true
-    file: zoc_$(date +%Y-%m-%d)-$TRAVIS_RUST_VERSION-$TRAVIS_OS_NAME.tar.gz
+    file: $zipname
     on:
         tags: true
     api_key:
